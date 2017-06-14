@@ -80,7 +80,7 @@ static void _set_globals(void);
 			launch_options]];
 
 	tab_controller_ = [Tab_controller new];
-	[window_ addSubview:tab_controller_.view];
+	[window_ setRootViewController:tab_controller_];
 
 	[window_ makeKeyAndVisible];
 
