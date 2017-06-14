@@ -302,7 +302,6 @@
 				D5B08A80133D30E700A60B34 /* Er_recorder.plist */,
 				8D1107310486CEB800E47090 /* Record_my_position-dev.plist */,
 				D59AAF16134BC5BC00E81139 /* Record_my_position-appstore.plist */,
-				32CA4F630368D1EE00C91783 /* Record_my_position_Prefix.pch */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -333,6 +332,7 @@
 				D5C47781127177D500CB008F /* GPS.m */,
 				D5BEDA3D126F8C100056DB78 /* macro.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				32CA4F630368D1EE00C91783 /* Record_my_position_Prefix.pch */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -723,7 +723,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Record_my_position_Prefix.pch;
+				GCC_PREFIX_HEADER = src/Record_my_position_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					USE_DCINTROSPECT,
@@ -739,7 +739,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Record_my_position_Prefix.pch;
+				GCC_PREFIX_HEADER = src/Record_my_position_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					USE_DCINTROSPECT,
@@ -813,7 +813,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Record_my_position_Prefix.pch;
+				GCC_PREFIX_HEADER = src/Record_my_position_Prefix.pch;
 				INFOPLIST_FILE = "resources/Record_my_position-appstore.plist";
 				PRODUCT_NAME = Record_my_position_appstore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -827,7 +827,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Record_my_position_Prefix.pch;
+				GCC_PREFIX_HEADER = src/Record_my_position_Prefix.pch;
 				INFOPLIST_FILE = "resources/Record_my_position-appstore.plist";
 				PRODUCT_NAME = Record_my_position_appstore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
