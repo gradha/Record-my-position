@@ -2,7 +2,7 @@
 Record my GPS position
 ======================
 
-:author: Grzegorz Adam Hankiewicz <gradha@imap.cc>
+:author: Grzegorz Adam Hankiewicz <ef@gradha.imap.cc>
 
 .. contents::
 
@@ -53,12 +53,12 @@ __ http://efaber.net/
 App store
 =========
 
-.. image:: https://github.com/downloads/svet/Record-my-position/record_my_gps_position_qr_appstore.png
+.. image:: https://cloud.github.com/downloads/svet/Record-my-position/record_my_gps_position_qr_appstore.png
    :align: right
 
 Record my GPS position can be downloaded for free from the Apple
 App Store
-(http://itunes.com/apps/electrichandssoftware/recordmygpsposition/).
+(https://itunes.apple.com/app/record-my-gps-position/id405865492?mt=8).
 
 
 Requests and issues
