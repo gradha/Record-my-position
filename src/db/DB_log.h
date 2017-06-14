@@ -21,7 +21,7 @@
 	int row_type_;
 
 	/// Seconds since epoch for the event.
-	int timestamp_;
+	long timestamp_;
 
 	/// Tells if the application was in foreground.
 	BOOL in_background_;

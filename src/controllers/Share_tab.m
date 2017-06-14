@@ -264,15 +264,16 @@
 - (NSString*)get_export_filename
 {
 	NSDateComponents *now = [[NSCalendar currentCalendar]
-		components:NSDayCalendarUnit | NSMonthCalendarUnit |
-		NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit |
-		NSSecondCalendarUnit fromDate:[NSDate date]];
+		components:NSCalendarUnitDay | NSCalendarUnitMonth |
+		NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute |
+		NSCalendarUnitSecond fromDate:[NSDate date]];
 
 	Hardware_info *info = get_hardware_info();
 
 	NSString *ret = [NSString stringWithFormat:@"positions %04d-%02d-%02d "
-		@"%02d:%02d:%02d %s", [now year], [now month], [now day],
-		[now hour], [now minute], [now second],
+		@"%02d:%02d:%02d %s",
+		(int)[now year], (int)[now month], (int)[now day],
+		(int)[now hour], (int)[now minute], (int)[now second],
 		(info && info->name) ? (info->name) : ("unknown")];
 
 	destroy_hardware_info(&info);

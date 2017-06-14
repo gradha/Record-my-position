@@ -8,7 +8,7 @@
 	NSString *title_;
 }
 
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) NSArray *items;
 
 @end

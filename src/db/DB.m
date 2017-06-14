@@ -72,7 +72,7 @@ NSString *DB_bump_notification = @"DB_bump_notification";
 + (DB*)open_database
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	const int db_version = [defaults integerForKey:_DB_MODEL_KEY];
+	const int db_version = (int)[defaults integerForKey:_DB_MODEL_KEY];
 	if (_DB_MODEL_VERSION != db_version) {
 		DLOG(@"Preious DB model %d, I was expecting %d. Purging!", db_version,
 			_DB_MODEL_VERSION);
@@ -208,7 +208,7 @@ NSString *DB_bump_notification = @"DB_bump_notification";
 	if (!data)
 		return;
 
-	DLOG(@"Flushing %d entries to disk.", data.count);
+	DLOG(@"Flushing %ld entries to disk.", (long)data.count);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 	for (DB_log *db_log in data) {
@@ -249,7 +249,7 @@ NSString *DB_bump_notification = @"DB_bump_notification";
 				@"VALUES (NULL, ?, ?, 0, 0, -1, -1,-1, ?, ?, ?, ?, ?, ?,"
 				@"?, ?)",
 				[NSNumber numberWithInt:DB_ROW_TYPE_LOG], db_log.text,
-				[NSNumber numberWithInt:db_log->timestamp_],
+				[NSNumber numberWithLong:db_log->timestamp_],
 				[NSNumber numberWithBool:db_log->in_background_],
 				[NSNumber numberWithInt:db_log->accuracy_],
 				[NSNumber numberWithDouble:db_log.location.speed],
@@ -280,7 +280,7 @@ NSString *DB_bump_notification = @"DB_bump_notification";
 		EGODatabaseRow *row = [result rowAtIndex:0];
 		total += [row intForColumnIndex:0];
 	}
-	return total + buffer_.count;
+	return total + (int)buffer_.count;
 }
 
 /** Queries the database for rows to make an attachment from.

@@ -45,7 +45,7 @@
 			reuseIdentifier:identifier] autorelease];
 
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.textLabel.text = [self.items get:indexPath.row * 2];
+	cell.textLabel.text = [self.items get:(int)indexPath.row * 2];
 	cell.textLabel.textColor = [UIColor colorWithRed:0x12 / 255.0
 		green:0x65 / 255.0 blue:0x74 / 255.0 alpha:1];
 	cell.textLabel.adjustsFontSizeToFitWidth = YES;
@@ -64,8 +64,8 @@
 - (void)tableView:(UITableView *)tableView
 	didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *title = [self.items get:indexPath.row * 2];
-	id content = [self.items get:indexPath.row * 2 + 1];
+	NSString *title = [self.items get:(int)indexPath.row * 2];
+	id content = [self.items get:(int)indexPath.row * 2 + 1];
 
 	if ([content isKindOfClass:[NSString class]]) {
 		HTML_view_controller *controller = [HTML_view_controller new];

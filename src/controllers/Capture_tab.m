@@ -8,7 +8,6 @@
 
 @interface Capture_tab ()
 - (void)gps_switch_changed;
-- (void)gps_switch_changed;
 - (void)update_gui;
 - (void)start_timer;
 - (void)add_note;
