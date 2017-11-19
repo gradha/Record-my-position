@@ -199,7 +199,9 @@
 	if ([start_switch_ isOn]) {
 		if (![gps start]) {
 			start_switch_.on = false;
-			[self warn:@"Couldn't start GPS" title:@"GPS"];
+			if (![self check_gps_permissions]) {
+				[self warn:@"Couldn't start GPS" title:@"GPS"];
+			}
 		} else {
 			[gps add_watcher:self];
 			watching_ = YES;
@@ -373,6 +375,76 @@
 	else
 		[super observeValueForKeyPath:keyPath ofObject:object change:change
 			context:context];
+}
+
+#pragma mark -
+#pragma mark GPS permission dance
+
+/**
+ Validates permissions against the user interface.
+
+ Returns YES if the permission state was handled, NO if everything is fine and
+ GPS should really work.
+ */
+- (BOOL)check_gps_permissions
+{
+	const CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+
+	if (kCLAuthorizationStatusRestricted == status) {
+		[self warn:@"Global permissions disallow using the GPS"
+			title:@"GPS is disabled"];
+		return YES;
+	}
+
+	if (kCLAuthorizationStatusDenied == status) {
+		[self ask_gps_permissions];
+		return YES;
+	}
+
+	if (kCLAuthorizationStatusNotDetermined == status) {
+		[[GPS get] requestPermissions];
+		return YES;
+	}
+
+	return NO;
+}
+
+
+/** Asks the user for permissions.
+ *
+ * Actually, we can't, so we display a button instead which opens the global
+ * preferences to guide the user there.
+ */
+- (void)ask_gps_permissions
+{
+	NSDictionary* info = [[NSBundle mainBundle] infoDictionary];
+	NSString* title
+		= @"Allow Record My Position to access your location at all times?";
+	NSString* message = [info objectForKey:@"NSLocationAlwaysUsageDescription"];
+
+	UIAlertController* alert = [UIAlertController
+		alertControllerWithTitle:title message:message
+		preferredStyle:UIAlertControllerStyleAlert];
+
+	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel"
+		style:UIAlertActionStyleDefault handler:^(UIAlertAction* _Nonnull action)
+	{
+		// If users cancels, show the updated denied message.
+		dispatch_async_ui(^{
+			[self warn:@"The app won't work wihout permissions"
+				title:@"No permissions"];
+		});
+	}]];
+
+	[alert addAction:[UIAlertAction actionWithTitle:@"Open Settings"
+		style:UIAlertActionStyleDefault
+		handler:^(UIAlertAction* _Nonnull action)
+	{
+		[[UIApplication sharedApplication] openURL:[NSURL
+			URLWithString:UIApplicationOpenSettingsURLString]];
+	}]];
+
+	[self presentViewController:alert animated:true completion:nil];
 }
 
 @end

@@ -74,11 +74,14 @@ Source code
 Requirements
 ------------
 
-The source code uses SDK 4.1 and deploys on 3.x. Patches are welcome
-to make it compile out of the box with previous SDK versions. In
-order to dynamically generate the versioned splash number, you need
-Cobra (http://cobra-language.com/) to compile the
-``script/watermark.cobra`` program and run it.
+The source code compiles against SDK 8.0, which is the current lowest supported
+SDK by Apple. Previous to the 8.0 update the code supported deployment on 3.x
+OS versions, but that's not Apple's cup of tea, you are presumed to upgrade
+your hardware every year, so you likely won't make use of that anyway.
+
+In order to dynamically generate the versioned splash number, you need Cobra
+(http://cobra-language.com/) to compile the ``script/watermark.cobra`` program
+and run it.
 
 
 Installation

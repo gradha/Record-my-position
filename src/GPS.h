@@ -50,6 +50,7 @@ typedef enum ACCURACY_ENUM ACCURACY;
 + (NSString*)key_path;
 - (id)init;
 - (bool)start;
+- (void)requestPermissions;
 - (void)stop;
 - (void)add_watcher:(id)watcher;
 - (void)remove_watcher:(id)watcher;

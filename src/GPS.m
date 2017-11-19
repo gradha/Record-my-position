@@ -150,7 +150,14 @@ static GPS *g_;
  */
 - (bool)start
 {
-	if (manager_.locationServicesEnabled) {
+	const CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+	BOOL shouldWork = (kCLAuthorizationStatusAuthorizedWhenInUse == status
+		|| kCLAuthorizationStatusAuthorizedAlways == status);
+
+	if (!shouldWork)
+		return false;
+
+	if ([CLLocationManager locationServicesEnabled]) {
 		if (!self.gps_is_on && !nolog_)
 			[[DB get] log:@"Starting to update location"];
 
@@ -163,6 +170,13 @@ static GPS *g_;
 		self.gps_is_on = NO;
 		return false;
 	}
+}
+
+/** Requests the OS to ask the user for always permissions.
+ */
+- (void)requestPermissions
+{
+	[manager_ requestAlwaysAuthorization];
 }
 
 /** Stops the GPS tracking.
